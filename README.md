@@ -5,7 +5,7 @@ Simple Turing Machine that accepts instructions and interact with a given stream
 - First argument: is the path to the instructions file
 - Second argument: is the stream to work with
 
-Usage: `node index.js path/to/instructions.txt <stream>
+Usage: `node index.js path/to/instructions.txt <stream>`
 
 The instruction file should contain a list of instructions (one per line)
 
