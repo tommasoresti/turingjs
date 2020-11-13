@@ -13,7 +13,7 @@ An instruction is defined as a string of 5 characters:
 * pointer increment (>, <, _)
 * next state to jump to
 
-This machine start always from state `0`
+This machine start always from state `0`, pointing to position `0` in the stream.
 
 The stream bounds are indicated by `'#'`
 
