@@ -77,7 +77,7 @@ Out:	#,0,1,0,1,0,1,#
 
 Instructions inside `examples/move_ones_to_right.txt`:
 
-Command: `node index.js examples/move_ones_to_right.txt 101010`
+Command: `node index.js examples/move_ones_to_right.txt 111000`
 
 ```
 // State 0: Go to right side
