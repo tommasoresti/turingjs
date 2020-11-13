@@ -5,6 +5,8 @@ Simple Turing Machine that accepts instructions and interact with a given stream
 - First argument: is the path to the instructions file
 - Second argument: is the stream to work with
 
+Usage: `node index.js path/to/instructions.txt <stream>
+
 The instruction file should contain a list of instructions (one per line)
 
 An *instruction* is defined as a string of *5 characters*:
@@ -35,6 +37,8 @@ Project comes already with some examples.
 
 Let's start with `examples/toggle_values.txt`
 
+Command: `node index.js examples/toggle_values.txt 111110`
+
 These instructions are converting 0's to 1's
 
 ```
@@ -61,6 +65,8 @@ Execution:
 ### Move 1s to right side
 
 Instructions inside `examples/move_ones_to_right.txt`:
+
+Command: `node index.js examples/move_ones_to_right.txt 101010`
 
 ```
 // State 0
