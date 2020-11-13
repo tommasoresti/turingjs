@@ -1,3 +1,5 @@
+// State 0: convert 1s and 0s
+
 010>0  // On state 0: when 1 is found then write 0. Move pointer right and jump to state 0.
 001>0  // On state 0: when 0 is found then write 1. Move pointer right and jump to state 0.
 0#*=!  // On state 0: when bound is found ('#') then skip write ('*'). Don't move the pointer ('=') and terminate the execution ('!').

@@ -2,8 +2,10 @@
 
 Simple Turing Machine that accepts instructions and interact with a given stream
 
-* `stream.txt` contains the stream
-* `instructions.txt` contains a list of instructions (one per line)
+- First argument: is the path to the instructions file
+- Second argument: is the stream to work with
+
+The instruction file should contain a list of instructions (one per line)
 
 An *instruction* is defined as a string of *5 characters*:
 
@@ -81,4 +83,50 @@ Execution:
 3 0=0 // When empty space is found put a 0 and jump to state 0
 3**<3 // Keep going left if the empty space is not found
 
+```
+
+Given buffer: `101010`
+
+Executions: 
+
+```
+0:      #,1,0,1,0,1,0,#
+1:      #, ,0,1,0,1,0,#
+2:      #, ,0,1,0,1,0,#
+3:      #, ,0,1,0,1,0,#
+4:      #, ,0,1,0,1,0,#
+5:      #, ,0,1,0,1,0,#
+6:      #, ,0,1,0,1,0,#
+7:      #, ,0,1,0,1,0,#
+8:      #, ,0,1,0,1,0,#
+9:      #, ,0,1,0,1,1,#
+10:     #, ,0,1,0,1,1,#
+11:     #, ,0,1,0,1,1,#
+12:     #, ,0,1,0,1,1,#
+13:     #, ,0,1,0,1,1,#
+14:     #, ,0,1,0,1,1,#
+15:     #,0,0,1,0,1,1,#
+16:     #,0,0,1,0,1,1,#
+17:     #,0,0,1,0,1,1,#
+18:     #,0,0, ,0,1,1,#
+19:     #,0,0, ,0,1,1,#
+20:     #,0,0, ,0,1,1,#
+21:     #,0,0, ,0,1,1,#
+22:     #,0,0, ,0,1,1,#
+23:     #,0,0, ,0,1,1,#
+24:     #,0,0, ,0,1,1,#
+25:     #,0,0, ,0,1,1,#
+26:     #,0,0, ,1,1,1,#
+27:     #,0,0, ,1,1,1,#
+28:     #,0,0,0,1,1,1,#
+29:     #,0,0,0,1,1,1,#
+30:     #,0,0,0, ,1,1,#
+31:     #,0,0,0, ,1,1,#
+32:     #,0,0,0, ,1,1,#
+33:     #,0,0,0, ,1,1,#
+34:     #,0,0,0, ,1,1,#
+35:     #,0,0,0, ,1,1,#
+36:     #,0,0,0, ,1,1,#
+
+Out:    #,0,0,0,1,1,1,#
 ```

@@ -36,7 +36,7 @@ const toTree = (prevStates, instruction) => {
     };
 }
 
-const initialStream = fs.readFileSync(args[1], 'utf8').split("");
+const initialStream = args[1].split("");
 const states = fs.readFileSync(args[0], 'utf8')
     .split("\n")
     .map(line => line.split("//")[0].trim()) // Remove comments
