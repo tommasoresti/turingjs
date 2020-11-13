@@ -12,14 +12,14 @@ The instruction file should contain a list of instructions (one per line)
 An *instruction* is defined as a string of *5 characters*:
 
 * current state
-* element read by pointer
-  * `*` indicate any char is valid
-* element to write at pointer
-  * `*` indicate skip writing
-* pointer increment
-  * `<` move left
-  * `>` move right
-  * `=` do not move
+* character matcher
+  * `*` indicates any char will match
+* character to write at pointer
+  * `*` indicates skip writing
+* pointer movement
+  * `<` moves left
+  * `>` moves right
+  * `=` it means do not move
 * next state to jump to
   * `!` will terminate the execution
 
