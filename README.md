@@ -1,6 +1,6 @@
 # Turing Machine JS
 
-Simple Turing Machine that accepts states and interact with a given stream
+Simple Turing Machine that accepts instructions and interact with a given stream
 
 * `stream.txt` contains the stream
 * `instructions.txt` contains a list of instructions (one per line)
