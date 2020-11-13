@@ -2,35 +2,41 @@ fs = require('fs')
 
 let args = process.argv.slice(2);
 
-const newStreamFromState = (state, character) => { switch(character) {
-    case '*': return state.stream
+const updateStream = (stream, position, character) => { switch(character) {
+    case '*': return stream
     default: return [
-        ...state.stream.slice(0, state.position),
+        ...stream.slice(0, position),
         character,
-        ...state.stream.slice(state.position + 1)
+        ...stream.slice(position + 1)
     ]
 }}
 
-const aRunOperation = (line) => ({
-    run: s => {
+const moveOperations = {
+    ">": n => n + 1,
+    "<": n => n - 1,
+    "=": n => n
+};
+
+const aRunnerWith = (instructions) => ({
+    run: state => {
         return ({
-            stream: newStreamFromState(s, line[0]),
-            position: movePosition[line[1]](s.position),
-            state: line[2]
+            stream: updateStream(state.stream, state.position, instructions[0]),
+            position: moveOperations[instructions[1]](state.position),
+            state: instructions[2]
         });
     }
 });
 
-const toTree = (prevStates, instruction) => {
-    if(instruction.length === 3)
-        return aRunOperation(instruction);
+const toTree = (prevStates, instructions) => {
+    if(instructions.length === 3)
+        return aRunnerWith(instructions);
 
     return {
         ...prevStates,
         ...{
-            [instruction[0]]: {
-                ...prevStates[instruction[0]],
-                ...toTree({}, instruction.slice(1))
+            [instructions[0]]: {
+                ...prevStates[instructions[0]],
+                ...toTree({}, instructions.slice(1))
             }
         }
     };
@@ -42,12 +48,6 @@ const states = fs.readFileSync(args[0], 'utf8')
     .map(line => line.split("//")[0].trim()) // Remove comments
     .filter(line => line)// filter empty lines
     .reduce(toTree, {});
-
-const movePosition = {
-    ">": n => n + 1,
-    "<": n => n - 1,
-    "=": n => n
-};
 
 let current = {
     state: 0,
