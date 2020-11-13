@@ -13,4 +13,13 @@ A state is defined as a string of 5 characters:
 * pointer increment (>, <, _)
 * next state to jump to
 
-The provided states are converting 0's to 1's
+The stream bounds are indicated by `'#'`
+
+The project comes already with a prefilled `states.txt`
+This states are converting 0's to 1's
+
+```
+010>0
+001>0
+0#__!
+```
