@@ -11,7 +11,7 @@ The instruction file should contain a list of instructions (one per line)
 
 An *instruction* is defined as a string of *5 characters*:
 
-* current state
+* state for which the instruction is part of
 * character matcher
   * `*` indicates any char will match
 * character to write at pointer
