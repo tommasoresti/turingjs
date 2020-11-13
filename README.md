@@ -9,9 +9,15 @@ An *instruction* is defined as a string of *5 characters*:
 
 * current state
 * element read by pointer
+  * `*` indicate any char is valid
 * element to write at pointer
-* pointer increment (>, <, _)
+  * `*` indicate skip writing
+* pointer increment
+  * `<` move left
+  * `>` move right
+  * `=` do not move
 * next state to jump to
+  * `!` will terminate the execution
 
 This machine start always from *state* `0`, pointing to *position* `0` in the stream.
 

@@ -2,10 +2,19 @@ fs = require('fs')
 
 let args = process.argv.slice(2);
 
+const newStreamFromState = (state, character) => { switch(character) {
+    case '*': return state.stream
+    default: return [
+        ...state.stream.slice(0, state.position),
+        character,
+        ...state.stream.slice(state.position + 1)
+    ]
+}}
+
 const aRunOperation = (line) => ({
     run: s => {
         return ({
-            stream: [...s.stream.slice(0, s.position), line[0], ...s.stream.slice(s.position + 1)],
+            stream: newStreamFromState(s, line[0]),
             position: movePosition[line[1]](s.position),
             state: line[2]
         });
@@ -33,9 +42,9 @@ const states = fs.readFileSync(args[0], 'utf8')
     .reduce(toTree, {});
 
 const movePosition = {
-    '>': n => n + 1,
-    '<': n => n - 1,
-    '_': n => n
+    ">": n => n + 1,
+    "<": n => n - 1,
+    "=": n => n
 };
 
 let current = {
@@ -44,7 +53,13 @@ let current = {
     stream: ['#', ...initialStream, '#']
 };
 
+let step = 0;
 while(current.state !== '!') {
-    console.log(...current.stream)
-    current = states[current.state][current.stream[current.position]].run(current)
+    console.log(`${step++}:\t${[...current.stream]}`)
+    current = (
+        states[current.state][current.stream[current.position]] ||
+        states[current.state]['*']
+    ).run(current)
 }
+
+console.log(`\nOut:\t${current.stream}`)
