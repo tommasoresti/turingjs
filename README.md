@@ -17,6 +17,8 @@ This machine start always from state `0`
 
 The stream bounds are indicated by `'#'`
 
+The symbol `'!'` is used as a state jump to terminate the execution
+
 The project comes already with a prefilled `instructions.txt`
 These instructions are converting 0's to 1's
 
