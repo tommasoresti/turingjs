@@ -37,7 +37,7 @@ Project comes already with some examples.
 
 Let's start with `examples/toggle_values.txt`
 
-Command: `node index.js examples/toggle_values.txt 111110`
+Command: `node index.js examples/toggle_values.txt 101010`
 
 These instructions are converting 0's to 1's
 
