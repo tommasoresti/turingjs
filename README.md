@@ -33,7 +33,7 @@ The symbol `'!'` is used as a state jump to *terminate* the execution
 
 Project comes already with some examples.
 
-Let's start with `example/toggle_values.txt`
+Let's start with `examples/toggle_values.txt`
 
 These instructions are converting 0's to 1's
 
@@ -59,6 +59,8 @@ Execution:
 ```
 
 ### Move 1s to right side
+
+Instructions inside `examples/move_ones_to_right.txt`:
 
 ```
 // State 0
