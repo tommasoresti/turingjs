@@ -30,6 +30,8 @@ let state = '0';
 let pointer = 1;
 
 while(state !== '!') {
+    console.log(...stream)
+
     const stateElement = states[state][stream[pointer]];
     const writeElement = Object.keys(stateElement)[0]
     const moveElement = Object.keys(Object.values(stateElement)[0])[0]
@@ -45,6 +47,4 @@ while(state !== '!') {
     }
 
     state = jumpElement
-
-    console.log(stream)
 }
