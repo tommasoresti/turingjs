@@ -2,8 +2,8 @@
 
 Simple Turing Machine that accepts states and interact with a given stream
 
-`input.txt` contains the stream
-`states.txt` contains the states
+* `input.txt` contains the stream
+* `states.txt` contains the states
 
 A state is defined as a string of 5 characters:
 
