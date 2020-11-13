@@ -15,8 +15,8 @@ An instruction is defined as a string of 5 characters:
 
 The stream bounds are indicated by `'#'`
 
-The project comes already with a prefilled `states.txt`
-This states are converting 0's to 1's
+The project comes already with a prefilled `instructions.txt`
+These instructions are converting 0's to 1's
 
 ```
 010>0
