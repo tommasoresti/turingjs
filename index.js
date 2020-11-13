@@ -2,9 +2,8 @@ fs = require('fs')
 
 let args = process.argv.slice(2);
 
-const content = fs.readFileSync(args[0], 'utf8');
+const commands = fs.readFileSync(args[0], 'utf8').split("\n");
 const initialStream = fs.readFileSync(args[1], 'utf8').split("");
-const commands = content.split("\n");
 
 const movePosition = {
     '>': n => n + 1,
