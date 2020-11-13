@@ -31,7 +31,9 @@ The symbol `'!'` is used as a state jump to *terminate* the execution
 
 ### Convert 0s and 1s
 
-As an example, the project comes already with a prefilled `instructions.txt`
+Project comes already with some examples.
+
+Let's start with `example/toggle_values.txt`
 
 These instructions are converting 0's to 1's
 
