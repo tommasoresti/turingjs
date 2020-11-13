@@ -25,7 +25,9 @@ The stream *bounds* are indicated by `'#'`
 
 The symbol `'!'` is used as a state jump to *terminate* the execution
 
-## Example case
+## Examples
+
+### Convert 0s and 1s
 
 As an example, the project comes already with a prefilled `instructions.txt`
 
@@ -50,4 +52,33 @@ Execution:
 # 0 0 0 0 1 0 #
 # 0 0 0 0 0 0 #
 # 0 0 0 0 0 1 #
+```
+
+### Move 1s to right side
+
+```
+// State 0
+// Search for 1 starting from current position.
+// Delete it when is found and then jump to right side
+
+00*>0 // when find a 0 just do nothing and go ahead
+01 =1 // when find a 1 remove it and jump to state 1 (move to right border)
+0#*=! // when find the bound terminate
+
+// State 1: Go to right side
+
+1#*<2 // When right border is found jump to state 2
+1**>1 // go to right
+
+// State 2: find first 0 from right
+
+201=3 // When 0 is found put 1 and jump to state 3
+21*<2 // When 1 is found keep going left
+2 1=! // When found empty space means that no zeros were found, so write 1 and terminate.
+
+// Step 3: Move the zero to the empty space
+
+3 0=0 // When empty space is found put a 0 and jump to state 0
+3**<3 // Keep going left if the empty space is not found
+
 ```
