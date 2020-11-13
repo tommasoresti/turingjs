@@ -14,6 +14,7 @@ An instruction is defined as a string of 5 characters:
 * next state to jump to
 
 This machine start always from state `0`
+
 The stream bounds are indicated by `'#'`
 
 The project comes already with a prefilled `instructions.txt`
