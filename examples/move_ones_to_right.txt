@@ -1,23 +1,27 @@
-// State 0
-// Search for 1 starting from current position.
-// Delete it when is found and then jump to right side
+// State 0: Go to right side
 
-00*>0 // when find a 0 just do nothing and go ahead
-01 =1 // when find a 1 remove it and jump to state 1 (move to right border)
-0#*=! // when find the bound terminate
+0#*<1 // When right border is found jump to state 2
+0**>0 // go to right
 
-// State 1: Go to right side
+// State 1
+// Search for next 0 on left side starting from current position.
 
-1#*<2 // When right border is found jump to state 2
-1**>1 // go to right
+10 <2 // when find a 0 remove it, move left and jump to state 2 (search for a 1)
+11*<1 // when find a 1 just continue left
+1#*=! // when find the bound terminate
 
-// State 2: find first 0 from right
+// State 2: Search for 1
 
-201=3 // When 0 is found put 1 and jump to state 3
-21*<2 // When 1 is found keep going left
-2 1=! // When found empty space means that no zeros were found, so write 1 and terminate.
+2#*=4 // When left border is found jump to state 4
+210>3 // when 1 is found put 0 and jump to state 3 (move 1 to empty space)
+20*<2 // When 0 go to left
 
-// Step 3: Move the zero to the empty space
+// State 3: Move the 1 to the empty space
 
-3 0=0 // When empty space is found put a 0 and jump to state 0
-3**<3 // Keep going left if the empty space is not found
+3**>3 // When no empty space is found move right
+3 1<1 // When empty space is found put 1, go left and jump to 1 (search next zero)
+
+// Step 4: Restore the removed 0 when no 1 is found
+
+4 0=! // When empty space is found put a 0 and jump to state 0
+4**>4 // Keep going left if the empty space is not found

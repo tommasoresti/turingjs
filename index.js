@@ -58,6 +58,7 @@ let current = {
 let step = 0;
 while(current.state !== '!') {
     console.log(`${step++}:\t${[...current.stream]}`)
+    console.log(`   \t${' '.repeat(current.position * 2)}^`)
     current = (
         states[current.state][current.stream[current.position]] ||
         states[current.state]['*']
