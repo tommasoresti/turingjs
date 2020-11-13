@@ -2,10 +2,10 @@
 
 Simple Turing Machine that accepts states and interact with a given stream
 
-* `input.txt` contains the stream
-* `states.txt` contains the states
+* `stream.txt` contains the stream
+* `instructions.txt` contains a list of instructions (one per line)
 
-A state is defined as a string of 5 characters:
+An instruction is defined as a string of 5 characters:
 
 * current state
 * element read by pointer

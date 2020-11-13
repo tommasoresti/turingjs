@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js states.txt input.txt"
+    "start": "node index.js instructions.txt stream.txt"
   },
   "author": "",
   "license": "ISC"

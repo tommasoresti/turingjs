@@ -2,7 +2,7 @@ fs = require('fs')
 
 let args = process.argv.slice(2);
 
-const runOperation = (line) => ({
+const aRunOperation = (line) => ({
     run: s => {
         return ({
             stream: [...s.stream.slice(0, s.position), line[0], ...s.stream.slice(s.position + 1)],
@@ -12,16 +12,16 @@ const runOperation = (line) => ({
     }
 });
 
-const toTree = (prevStates, line) => {
-    if(line.length === 3)
-        return runOperation(line);
+const toTree = (prevStates, instruction) => {
+    if(instruction.length === 3)
+        return aRunOperation(instruction);
 
     return {
         ...prevStates,
         ...{
-            [line[0]]: {
-                ...prevStates[line[0]],
-                ...toTree({}, line.slice(1))
+            [instruction[0]]: {
+                ...prevStates[instruction[0]],
+                ...toTree({}, instruction.slice(1))
             }
         }
     };
