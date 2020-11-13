@@ -1,14 +1,14 @@
 // State 0: Go to right side
 
 0#*<1 // When right border is found jump to state 2
-0**>0 // go to right
+0**>0 // With any other symbol go to right
 
 // State 1
 // Search for next 0 on left side starting from current position.
 
 10 <2 // when find a 0 remove it, move left and jump to state 2 (search for a 1)
 11*<1 // when find a 1 just continue left
-1#*=! // when find the bound terminate
+1#*=! // when the bound is found then terminate
 
 // State 2: Search for 1
 

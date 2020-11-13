@@ -38,24 +38,35 @@ Let's start with `examples/toggle_values.txt`
 These instructions are converting 0's to 1's
 
 ```
-010>0  // On state 0: when 1 is found then write 0. Move pointer right and jump to state 0.
-001>0  // On state 0: when 0 is found then write 1. Move pointer right and jump to state 0.
-0#*=!  // On state 0: when bound is found ('#') then skip write ('*'). Don't move the pointer ('=') and terminate the execution ('!').
+// State 0
+
+010>0  // when 1 is found then write 0. Move pointer right and jump to state 0.
+001>0  // when 0 is found then write 1. Move pointer right and jump to state 0.
+0#*=!  // when bound is found ('#') then skip write ('*'). Don't move the pointer ('=') and terminate the execution ('!').
 ```
 
 Given buffer:
-`111110`
+`101010`
 
 Execution:
 
 ```
-# 1 1 1 1 1 0 #
-# 0 1 1 1 1 0 #
-# 0 0 1 1 1 0 #
-# 0 0 0 1 1 0 #
-# 0 0 0 0 1 0 #
-# 0 0 0 0 0 0 #
-# 0 0 0 0 0 1 #
+0:	#,1,0,1,0,1,0,#
+   	  ^
+1:	#,0,0,1,0,1,0,#
+   	    ^
+2:	#,0,1,1,0,1,0,#
+   	      ^
+3:	#,0,1,0,0,1,0,#
+   	        ^
+4:	#,0,1,0,1,1,0,#
+   	          ^
+5:	#,0,1,0,1,0,0,#
+   	            ^
+6:	#,0,1,0,1,0,1,#
+   	              ^
+
+Out:	#,0,1,0,1,0,1,#
 ```
 
 ### Move 1s to right side
@@ -63,74 +74,113 @@ Execution:
 Instructions inside `examples/move_ones_to_right.txt`:
 
 ```
-// State 0
-// Search for 1 starting from current position.
-// Delete it when is found and then jump to right side
+// State 0: Go to right side
 
-00*>0 // when find a 0 just do nothing and go ahead
-01 =1 // when find a 1 remove it and jump to state 1 (move to right border)
-0#*=! // when find the bound terminate
+0#*<1 // When right border is found jump to state 2
+0**>0 // With any other symbol go to right
 
-// State 1: Go to right side
+// State 1
+// Search for next 0 on left side starting from current position.
 
-1#*<2 // When right border is found jump to state 2
-1**>1 // go to right
+10 <2 // when find a 0 remove it, move left and jump to state 2 (search for a 1)
+11*<1 // when find a 1 just continue left
+1#*=! // when the bound is found then terminate
 
-// State 2: find first 0 from right
+// State 2: Search for 1
 
-201=3 // When 0 is found put 1 and jump to state 3
-21*<2 // When 1 is found keep going left
-2 1=! // When found empty space means that no zeros were found, so write 1 and terminate.
+2#*=4 // When left border is found jump to state 4
+210>3 // when 1 is found put 0 and jump to state 3 (move 1 to empty space)
+20*<2 // When 0 go to left
 
-// Step 3: Move the zero to the empty space
+// State 3: Move the 1 to the empty space
 
-3 0=0 // When empty space is found put a 0 and jump to state 0
-3**<3 // Keep going left if the empty space is not found
+3**>3 // When no empty space is found move right
+3 1<1 // When empty space is found put 1, go left and jump to 1 (search next zero)
+
+// Step 4: Restore the removed 0 when no 1 is found
+
+4 0=! // When empty space is found put a 0 and jump to state 0
+4**>4 // Keep going left if the empty space is not found
 
 ```
 
-Given buffer: `101010`
+Given buffer: `111000`
 
 Executions: 
 
 ```
-0:      #,1,0,1,0,1,0,#
-1:      #, ,0,1,0,1,0,#
-2:      #, ,0,1,0,1,0,#
-3:      #, ,0,1,0,1,0,#
-4:      #, ,0,1,0,1,0,#
-5:      #, ,0,1,0,1,0,#
-6:      #, ,0,1,0,1,0,#
-7:      #, ,0,1,0,1,0,#
-8:      #, ,0,1,0,1,0,#
-9:      #, ,0,1,0,1,1,#
-10:     #, ,0,1,0,1,1,#
-11:     #, ,0,1,0,1,1,#
-12:     #, ,0,1,0,1,1,#
-13:     #, ,0,1,0,1,1,#
-14:     #, ,0,1,0,1,1,#
-15:     #,0,0,1,0,1,1,#
-16:     #,0,0,1,0,1,1,#
-17:     #,0,0,1,0,1,1,#
-18:     #,0,0, ,0,1,1,#
-19:     #,0,0, ,0,1,1,#
-20:     #,0,0, ,0,1,1,#
-21:     #,0,0, ,0,1,1,#
-22:     #,0,0, ,0,1,1,#
-23:     #,0,0, ,0,1,1,#
-24:     #,0,0, ,0,1,1,#
-25:     #,0,0, ,0,1,1,#
-26:     #,0,0, ,1,1,1,#
-27:     #,0,0, ,1,1,1,#
-28:     #,0,0,0,1,1,1,#
-29:     #,0,0,0,1,1,1,#
-30:     #,0,0,0, ,1,1,#
-31:     #,0,0,0, ,1,1,#
-32:     #,0,0,0, ,1,1,#
-33:     #,0,0,0, ,1,1,#
-34:     #,0,0,0, ,1,1,#
-35:     #,0,0,0, ,1,1,#
-36:     #,0,0,0, ,1,1,#
+0:	#,1,1,1,0,0,0,#
+   	  ^
+1:	#,1,1,1,0,0,0,#
+   	    ^
+2:	#,1,1,1,0,0,0,#
+   	      ^
+3:	#,1,1,1,0,0,0,#
+   	        ^
+4:	#,1,1,1,0,0,0,#
+   	          ^
+5:	#,1,1,1,0,0,0,#
+   	            ^
+6:	#,1,1,1,0,0,0,#
+   	              ^
+7:	#,1,1,1,0,0,0,#
+   	            ^
+8:	#,1,1,1,0,0, ,#
+   	          ^
+9:	#,1,1,1,0,0, ,#
+   	        ^
+10:	#,1,1,1,0,0, ,#
+   	      ^
+11:	#,1,1,0,0,0, ,#
+   	        ^
+12:	#,1,1,0,0,0, ,#
+   	          ^
+13:	#,1,1,0,0,0, ,#
+   	            ^
+14:	#,1,1,0,0,0,1,#
+   	          ^
+15:	#,1,1,0,0, ,1,#
+   	        ^
+16:	#,1,1,0,0, ,1,#
+   	      ^
+17:	#,1,1,0,0, ,1,#
+   	    ^
+18:	#,1,0,0,0, ,1,#
+   	      ^
+19:	#,1,0,0,0, ,1,#
+   	        ^
+20:	#,1,0,0,0, ,1,#
+   	          ^
+21:	#,1,0,0,0,1,1,#
+   	        ^
+22:	#,1,0,0, ,1,1,#
+   	      ^
+23:	#,1,0,0, ,1,1,#
+   	    ^
+24:	#,1,0,0, ,1,1,#
+   	  ^
+25:	#,0,0,0, ,1,1,#
+   	    ^
+26:	#,0,0,0, ,1,1,#
+   	      ^
+27:	#,0,0,0, ,1,1,#
+   	        ^
+28:	#,0,0,0,1,1,1,#
+   	      ^
+29:	#,0,0, ,1,1,1,#
+   	    ^
+30:	#,0,0, ,1,1,1,#
+   	  ^
+31:	#,0,0, ,1,1,1,#
+   	^
+32:	#,0,0, ,1,1,1,#
+   	^
+33:	#,0,0, ,1,1,1,#
+   	  ^
+34:	#,0,0, ,1,1,1,#
+   	    ^
+35:	#,0,0, ,1,1,1,#
+   	      ^
 
-Out:    #,0,0,0,1,1,1,#
+Out:	#,0,0,0,1,1,1,#
 ```
