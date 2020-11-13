@@ -94,8 +94,8 @@ Command: `node index.js examples/move_ones_to_right.txt 101010`
 
 // State 2: Search for 1
 
-2#*=4 // When left border is found jump to state 4
-210>3 // when 1 is found put 0 and jump to state 3 (move 1 to empty space)
+2#*>4 // When left border is found move right and jump to state 4
+210>3 // when 1 is found put 0, move right and jump to state 3 (move 1 to empty space)
 20*<2 // When 0 go to left
 
 // State 3: Move the 1 to the empty space
@@ -180,12 +180,10 @@ Executions:
 31:	#,0,0, ,1,1,1,#
    	^
 32:	#,0,0, ,1,1,1,#
-   	^
-33:	#,0,0, ,1,1,1,#
    	  ^
-34:	#,0,0, ,1,1,1,#
+33:	#,0,0, ,1,1,1,#
    	    ^
-35:	#,0,0, ,1,1,1,#
+34:	#,0,0, ,1,1,1,#
    	      ^
 
 Out:	#,0,0,0,1,1,1,#
