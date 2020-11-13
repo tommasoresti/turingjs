@@ -34,7 +34,7 @@ These instructions are converting 0's to 1's
 ```
 010>0  // On state 0: when 1 is found then write 0. Move pointer right and jump to state 0.
 001>0  // On state 0: when 0 is found then write 1. Move pointer right and jump to state 0.
-0#__!  // On state 0: when bound is found ('#') then skip write ('_'). Don't move the pointer ('_') and terminate the execution ('!').
+0#*=!  // On state 0: when bound is found ('#') then skip write ('*'). Don't move the pointer ('=') and terminate the execution ('!').
 ```
 
 Given buffer:
