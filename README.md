@@ -19,7 +19,8 @@ The stream *bounds* are indicated by `'#'`
 
 The symbol `'!'` is used as a state jump to *terminate* the execution
 
-The project comes already with a prefilled `instructions.txt`
+As an example, the project comes already with a prefilled `instructions.txt`
+
 These instructions are converting 0's to 1's
 
 ```
