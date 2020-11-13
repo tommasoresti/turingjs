@@ -11,15 +11,15 @@ The instruction file should contain a list of instructions (one per line)
 
 An *instruction* is defined as a string of *5 characters*:
 
-* current state
-* element read by pointer
-  * `*` indicate any char is valid
-* element to write at pointer
-  * `*` indicate skip writing
-* pointer increment
-  * `<` move left
-  * `>` move right
-  * `=` do not move
+* state for which the instruction is part of
+* character matcher
+  * `*` indicates any char will match
+* character to write at pointer
+  * `*` indicates skip writing
+* pointer movement
+  * `<` moves left
+  * `>` moves right
+  * `=` it means do not move
 * next state to jump to
   * `!` will terminate the execution
 
@@ -37,7 +37,7 @@ Project comes already with some examples.
 
 Let's start with `examples/toggle_values.txt`
 
-Command: `node index.js examples/toggle_values.txt 111110`
+Command: `node index.js examples/toggle_values.txt 101010`
 
 These instructions are converting 0's to 1's
 
@@ -77,7 +77,7 @@ Out:	#,0,1,0,1,0,1,#
 
 Instructions inside `examples/move_ones_to_right.txt`:
 
-Command: `node index.js examples/move_ones_to_right.txt 101010`
+Command: `node index.js examples/move_ones_to_right.txt 111000`
 
 ```
 // State 0: Go to right side
