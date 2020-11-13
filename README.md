@@ -26,6 +26,9 @@ These instructions are converting 0's to 1's
 0#__!
 ```
 
+Given buffer:
+`111110`
+
 Execution:
 
 ```
