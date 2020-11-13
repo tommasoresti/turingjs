@@ -12,3 +12,5 @@ A state is defined as a string of 5 characters:
 * element to write at pointer
 * pointer increment (>, <, _)
 * next state to jump to
+
+The provided states are converting 0's to 1's
